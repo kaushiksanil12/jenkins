@@ -66,7 +66,9 @@ pipeline {
         }
         failure {
             echo 'Deployment failed. Checking logs...'
-            sh 'docker-compose logs'
+            sh 'docker logs frontend-app || true'
+            sh 'docker logs backend-app || true'
+            sh 'docker logs mysql-db || true'
         }
     }
 }
